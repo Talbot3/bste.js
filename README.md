@@ -4,7 +4,8 @@ Class to create Binary Search Trees
 
 ## Documentation
 
-- BST Tree Structure
+### BST Tree Structure
+
 ```js
 {
   value: 10
@@ -21,7 +22,8 @@ Class to create Binary Search Trees
 }
 ```
 
-- BST properties & constants
+### BST properties & constants
+
 > **root** The root node  
 > **count** The node count  
 > **_IN_ORDER** | **_PRE_ORDER** | **_POST_ORDER** | **_LAYER_ORDER**
@@ -37,7 +39,8 @@ BST._POST_ORDER;  // 2
 BST._LAYER_ORDER; // 3
 ```
 
-- BST functions
+### BST functions
+
 > **push()** Add a node
 ```js
 bst.push( 10 );
@@ -75,7 +78,7 @@ BST.traverse.postOrder( rootNode );
 BST.traverse.layerOder( rootNode );
 ```
 
-- BST static functions
+### BST static functions
 > **create()** creates a new BST object from any given Binary Search Tree data structure  
 > by proving the associated node key names
 ```js
