@@ -1,4 +1,4 @@
-# Binary-Search-Tree-js
+# BST.js
 
 Class to create Binary Search Trees
 
