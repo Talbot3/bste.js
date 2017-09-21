@@ -51,13 +51,14 @@
 		pnValue = pnValue || "value";
 		pnLeft = pnLeft || "left";
 		pnRight = pnRight || "right";
+		if ( typeof node[ pnValue ] === "undefined" || typeof node[ pnLeft ] === "undefined" || typeof node[ pnRight ] === "undefined" ) return false;
 		if ( node[ pnLeft ] ) {
 			if ( node[ pnLeft ][ pnValue ] > node[ pnValue ] ) return false;
-			if ( !BST.isBST( node[ pnLeft ] ) ) return false;
+			if ( !BST.isBST( node[ pnLeft ], pnValue, pnLeft, pnRight ) ) return false;
 		}
 		if ( node[ pnRight ] ) {
 			if ( node[ pnRight ][ pnValue ] < node[ pnValue ] ) return false;
-			if ( !BST.isBST( node[ pnRight ] ) ) return false;
+			if ( !BST.isBST( node[ pnRight ], pnValue, pnLeft, pnRight ) ) return false;
 		}
 		return true;
 	};
