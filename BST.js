@@ -95,6 +95,7 @@
 	 */
 	BST.prototype.push = function( value ) {
 		var newNode = createNode( value );
+		this.count++;
 		if ( !this.root ) {
 			this.root = newNode;
 		} else {
@@ -109,7 +110,6 @@
 				}
 			}
 		}
-		this.count++;
 	};
 	
 	/*
