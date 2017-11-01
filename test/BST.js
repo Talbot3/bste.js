@@ -1,5 +1,5 @@
 const test = require('unit.js');
-const _BST_ = require( "BST.js" );
+const _BST_ = require( "../BST.js" );
 
 describe('Class BST (Binary Search Tree)', function() {
 	it('must create a new instance of the class', function() {
