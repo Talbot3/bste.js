@@ -8,9 +8,9 @@ Class to create Binary Search Trees
 
 ```js
 {
-  value: *value*
-  left: *node*,
-  right: *node*
+  value: 10,   // numeric value
+  left: null, // node or null
+  right: null // node or null
 }
 ```
 
