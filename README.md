@@ -4,21 +4,13 @@ Class to create Binary Search Trees
 
 ## Documentation
 
-### BST Tree Structure
+### Node structure
 
 ```js
 {
-  value: 10
-  left: {
-    value: 8,
-    left: null,
-    right: null
-  },
-  right: {
-    value: 12,
-    left: null,
-    right: null
-  }
+  value: *value*
+  left: *node*,
+  right: *node*
 }
 ```
 
@@ -26,17 +18,17 @@ Class to create Binary Search Trees
 
 > **root** The root node  
 > **count** The node count  
-> **_IN_ORDER** | **_PRE_ORDER** | **_POST_ORDER** | **_LAYER_ORDER**
+> **IN_ORDER** | **PRE_ORDER** | **POST_ORDER** | **LAYER_ORDER**
 ```js
 var bst = new BST;
 bst.root;
 bst.count;
 
 // BST ordertype constants:
-BST._IN_ORDER;    // 0
-BST._PRE_ORDER;   // 1
-BST._POST_ORDER;  // 2
-BST._LAYER_ORDER; // 3
+BST.IN_ORDER;
+BST.PRE_ORDER;
+BST.POST_ORDER;
+BST.LAYER_ORDER;
 ```
 
 ### BST functions
@@ -62,20 +54,11 @@ bst.max(true);  // returns the node with the value 12
 ```
 > **traverse()** Traverse the BST and return an Array with the node values in the given order  
 > Use the BST ordertype constants to choose the order  
->  traverse & the traverse algorithms can also be called statically
->  BUT if called statically you must provide a root node
 ```js
 bst.traverse( BST._IN_ORDER );
 bst.traverse( BST._PRE_ORDER );
 bst.traverse( BST._POST_ORDER );
 bst.traverse( BST._LAYER_ORDER );
-
-// static calls
-BST.traverse( BST._IN_ORDER, rootNode );
-BST.traverse.inOrder( rootNode );
-BST.traverse.preOrder( rootNode );
-BST.traverse.postOrder( rootNode );
-BST.traverse.layerOder( rootNode );
 ```
 
 ### BST static functions
