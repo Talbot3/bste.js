@@ -1,5 +1,5 @@
 (function( global, factory ) {
-	
+
 	"use strict";
 
 	if ( typeof module === "object" && typeof module.exports === "object" ) {
@@ -8,244 +8,199 @@
 	} else {
 		factory( global, false );
 	}
-	
+
 })( ( typeof window !== "undefined" ) ? window : this, function( global, noGlobal ) {
-	
+
 	"use strict";
-	
-	/*
-	 * Create a new node structure
-	 * @param {*} value The node value
-	 * @return {Object}
+
+	/**
+	 * Binary Search Tree class
 	 */
-	function createNode( value ) {
-		return {
-			value: value,
-			left: null,
-			right: null
-		};
-	}
-	
-	// Binary Search Tree constructor
-	var BST = function() {
-		this.root = null;
-		this.count = 0;
-	};
-	
-	// Ordertype constants
-	BST._IN_ORDER = 0;
-	BST._PRE_ORDER = 1;
-	BST._POST_ORDER = 2;
-	BST._LAYER_ORDER = 3;
-	
-	/*
-	 * check if the given bst structure is valid
-	 * @param {Object} node The root node of the Binary Search Tree
-	 * @param {String} pnValue The node's property key name to get the value
-	 * @param {String} pnLeft The node's property key name to get the left node
-	 * @param {String} pnRight The node's property key name to get the right node
-	 * @return {Boolean} True if valid else false
-	 */
-	BST.isBST = function( node, pnValue, pnLeft, pnRight ) {
-		if ( !node ) return false;
-		pnValue = pnValue || "value";
-		pnLeft = pnLeft || "left";
-		pnRight = pnRight || "right";
-		if ( typeof node[ pnValue ] === "undefined" || typeof node[ pnLeft ] === "undefined" || typeof node[ pnRight ] === "undefined" ) return false;
-		if ( node[ pnLeft ] ) {
-			if ( node[ pnLeft ][ pnValue ] > node[ pnValue ] ) return false;
-			if ( !BST.isBST( node[ pnLeft ], pnValue, pnLeft, pnRight ) ) return false;
+	class BST {
+		static get IN_ORDER() { return 'IN_ORDER' };
+		static get PRE_ORDER() { return 'PRE_ORDER'; }
+		static get POST_ORDER() { return 'POST_ORDER'; }
+		static get LAYER_ORDER() { return 'LAYER_ORDER'; }
+
+		/**
+		 * constructor
+		 */
+		constructor() {
+			this.root = null;
+			this.count = 0;
 		}
-		if ( node[ pnRight ] ) {
-			if ( node[ pnRight ][ pnValue ] < node[ pnValue ] ) return false;
-			if ( !BST.isBST( node[ pnRight ], pnValue, pnLeft, pnRight ) ) return false;
-		}
-		return true;
-	};
-	
-	/*
-	 * create a new BST object from any Binary Search Tree data structure
-	 * by passing the root node an its property key names { value / left node / right node }
-	 * @param {Object} node The root node of the Binary Search Tree
-	 * @param {String} pnValue The node's property key name to get the value
-	 * @param {String} pnLeft The node's property key name to get the left node
-	 * @param {String} pnRight The node's property key name to get the right node
-	 * @return {Object} A new BST object
-	 */
-	BST.create = function( node, pnValue, pnLeft, pnRight ) {
-		function traverse( node, pnValue, pnLeft, pnRight, data ) {
-			if ( node ) {
-				data = traverse( node[ pnLeft ], pnValue, pnLeft, pnRight, data );
-				data.push( node[ pnValue ] );
-				data = traverse( node[ pnRight ], pnValue, pnLeft, pnRight, data );
+
+		/**
+		 * Create a new node object
+		 * @param {Number} value The node value
+		 * @return {Object|Null} node or null if value is not a number
+		 */
+		createNode(value) {
+			if (typeof value !== 'number') return null;
+			return {
+				value: value,
+				left: null,
+				right: null
 			}
-			return data;
 		}
-		var values = traverse( node, pnValue, pnLeft, pnRight, [] );
-		var bst = new BST;
-		for( var i = 0, len = values.length; i < len; i++ ) {
-			bst.push( values[i] );
-		}
-		return bst;
-	};
-	
-	/*
-	 * add a new node into the BST
-	 * @param {*} value The node's value
-	 */
-	BST.prototype.push = function( value ) {
-		var newNode = createNode( value );
-		this.count++;
-		if ( !this.root ) {
-			this.root = newNode;
-		} else {
-			var node = this.root;
-			while( node ) {
-				if ( value < node.value ) {
-					if ( !node.left ) return node.left = newNode; 
-					node = node.left;
+
+		/**
+		 * Add one or multiple new node to the tree
+		 * increment the node count
+		 * @param {Number} value The node's value
+		 */
+		push(...values) {
+			values.forEach(value => {
+				let _node = this.createNode(value);
+					// return if the node is invalid
+				if (!_node) return;
+					// increment node count
+				this.count++;
+				if (!this.root) {
+						// set the root node if null
+					this.root = _node;
 				} else {
-					if ( !node.right ) return node.right = newNode;
-					node = node.right;
+					let node = this.root;
+					while(node) {
+						if (value < node.value) {
+							if (!node.left)
+								return node.left = _node;
+							node = node.left;
+						} else {
+							if (!node.right)
+								return node.right = _node;
+							node = node.right;
+						}
+					}
+				}
+			})
+		}
+
+		/**
+		 * Return the node with the lowest value
+		 * @return {Object|Null} Node or Null if there is no node
+		 */
+		min() {
+			if (!this.root) return null;
+			let node = this.root;
+			while(node) {
+				if (!node.left) return node;
+				node = node.left;
+			}
+		}
+
+		/**
+		 * Return the node with the higest value
+		 * @return {Object|Null} Node or Null if there is no node
+		 */
+		max() {
+			if (!this.root) return null;
+			let node = this.root;
+			while(node) {
+				if (!node.right) return node;
+				node = node.right;
+			}
+		}
+
+		/**
+		 * Return the first node which value matches the search value
+		 * @param {Number} the search value
+		 * @return {Object|Boolean} Returns the node with the searched value else false
+		 */
+		find(value, node = this.root) {
+			if (node) {
+				if (node.value === value) return node;
+				if (node.left) {
+					let _node = this.find(value, node.left);
+					if (_node) return _node;
+				}
+				if (node.right) {
+					let _node = this.find(value, node.right);
+					if (_node) return _node;
 				}
 			}
+			return false;
 		}
-	};
-	
-	/*
-	 * Get the first node which value matches the search value
-	 * @param {*} search The search value to match a node's value property
-	 * @return {Object|Boolean} Returns the node with the searched value or false
-	 */
-	BST.prototype.find = function( search, node ) {
-		node = node || this.root;
-		if ( node.value == search ) return node;
-		if ( node.left ) {
-			var result = this.find( search, node.left );
-			if ( result ) return result;
-		}
-		if ( node.right ) {
-			var result = this.find( search, node.right );
-			if ( result ) return result;
-		}
-		return false;
-	};
-	
-	/*
-	 * Get the lowest value of the BST
-	 * @param {Boolean} returnNode If true, min will return the node which contains the lowest value else the value itself
-	 * @return {*|Object|Null} The lowest BST value / node with the lowest value or Null if no root is given
-	 */
-	BST.prototype.min = function( returnNode ) {
-		if ( !this.root ) return null;
-		var node = this.root;
-		while( node ) {
-			if ( !node.left ) return ( returnNode ) ? node : node.value;
-			node = node.left;
-		}
-	};
-	
-	/*
-	 * Get the highest value of the BST
-	 * @param {Boolean} returnNode If true, min will return the node which contains the highest value else the value itself
-	 * @return {*|Object|Null} The highest BST value / node with the highest value or Null if no root is given
-	 */
-	BST.prototype.max = function( returnNode ) {
-		if ( !this.root ) return null;
-		var node = this.root;
-		while( node ) {
-			if ( !node.right ) return ( returnNode ) ? node : node.value;
-			node = node.right;
-		}
-	};
 
-	/*
-	 * Traverse the BST and return an Array with the node values in the given order
-	 * @param {Number} order Defines the traverse order by passing one of the BST ordertype constants
-	 * @param {Object} root An optional root node to begin with
-	 * @return {Array} An array containing the node values in the given order
-	 * @throws
-	 * * If traverse got called statically AND no root node is given
-	 * * If an invalid order is given
-	 */
-	BST.traverse = BST.prototype.traverse = function( order, root ) {
-		if ( !root && !this ) throw "When calling traverse statically you must provide a root node!";
-		root = root || this.root;
-		if ( !root ) return [];
-		switch( order ) {
-			case BST._IN_ORDER:			{ return BST.traverse.inOrder( root );		} break;
-			case BST._PRE_ORDER:		{ return BST.traverse.preOrder( root );		} break;
-			case BST._POST_ORDER:	{ return BST.traverse.postOrder( root );	} break;
-			case BST._LAYER_ORDER:	{ return BST.traverse.layerOder( root );		} break;
-			default: throw "Invalid order argument, please use the BST ordertype constants";
-		}
-	};
-	
-	/*
-	 * In Order traversal
-	 * @param {Object} node The root node
-	 * @return {Array} An array containing the node values in the given order
-	 */
-	BST.traverse.inOrder = function( node, data ) {
-		data = data || [];
-		if ( node ) {
-			data = BST.traverse.inOrder( node.left, data );
-			data.push( node.value );
-			data = BST.traverse.inOrder( node.right, data );
-		}
-		return data;
-	};
-	
-	/*
-	 * Pre Order traversal
-	 * @param {Object} node The root node
-	 * @return {Array} An array containing the node values in the given order
-	 */
-	BST.traverse.preOrder = function( node, data ) {
-		data = data || [];
-		if ( node ) {
-			data.push( node.value );
-			data = ( node.left ) ? BST.traverse.preOrder( node.left, data ) : data;
-			data = ( node.right ) ? BST.traverse.preOrder( node.right, data ) : data;
-		}
-		return data;
-	};
-	
-	/*
-	 * Post Order traversal
-	 * @param {Object} node The root node
-	 * @return {Array} An array containing the node values in the given order
-	 */
-	BST.traverse.postOrder = function( node, data ) {
-		data = data || [];
-		if ( node ) {
-			data = ( node.left ) ? BST.traverse.postOrder( node.left, data ) : data;
-			data = ( node.right ) ? BST.traverse.postOrder( node.right, data ) : data;
-			data.push( node.value );
-		}
-		return data;
-	};
+		/**
+		 * Return an Array with the node values in the given traverse order
+		 * @param {String} BST order type constants
+		 * @param {Object} The root node to begin with
+		 * @return {Array} ordered node values
+		 * @throws On invalid order type
+		 */
+		traverse(orderType, node = this.root) {
+			if (!node) return [];
+			switch(orderType) {
+				case BST.IN_ORDER:		{ return this._traverseInOrder(node);		} break;
+				case BST.PRE_ORDER:		{ return this._traversePreOrder(node);	} break;
+				case BST.POST_ORDER:	{ return this._traversePostOrder(node);	} break;
+				case BST.LAYER_ORDER:	{ return this._traverseLayerOrder(node);} break;
+				default: throw "Invalid order type";
+			}
+		};
 
-	/*
-	 * Layer Order traversal
-	 * @param {Object} node The root node
-	 * @return {Array} An array containing the node values by layer (height)
-	 * * The root layer starts at 0
-	 */
-	BST.traverse.layerOder = function( node, data, layer ) {
-		layer = layer || 0;
-		data = data || [];
-		data[ layer ] = ( !data[ layer ] ) ? [] : data[ layer ];
-		if ( node ) {
-			data[ layer ].push( node.value );
-			data = ( node.left ) ? BST.traverse.layerOder( node.left, data, layer+1 ) : data;
-			data = ( node.right ) ? BST.traverse.layerOder( node.right, data, layer+1 ) : data;
+		/**
+		 * In Order traversal
+		 * @param {Object} node tree node
+		 * @return {Array} "in order" node values
+		 */
+		_traverseInOrder(node, res = []) {
+			if (node) {
+				res = this._traverseInOrder(node.left, res);
+				res.push(node.value);
+				res = this._traverseInOrder(node.right, res);
+			}
+			return res;
 		}
-		return data;
-	};
-	
-	if ( noGlobal ) return BST;
-	
+
+		/**
+		 * Pre Order traversal
+		 * @param {Object} node tree node
+		 * @return {Array} "pre order" node values
+		 */
+		_traversePreOrder(node, res = []) {
+			if (node) {
+				res.push(node.value);
+				res = (node.left) ? this._traversePreOrder(node.left, res) : res;
+				res = (node.right) ? this._traversePreOrder(node.right, res) : res;
+			}
+			return res;
+		}
+
+		/**
+		 * Post Order traversal
+		 * @param {Object} node tree node
+		 * @return {Array} "post order" node values
+		 */
+		_traversePostOrder(node, res = []) {
+			if (node) {
+				res = (node.left) ? this._traversePostOrder(node.left, res) : res;
+				res = (node.right) ? this._traversePostOrder(node.right, res) : res;
+				res.push(node.value);
+			}
+			return res;
+		}
+
+		/**
+		 * Layer Order traversal
+		 * @param {Object} node tree node
+		 * @return {Array} An array containing the node values by layer (root layer = 0)
+		 */
+		_traverseLayerOrder(node, res = [], layer = 0) {
+			res[layer] = (!res[layer]) ? [] : res[layer];
+			if (node) {
+				res[layer].push(node.value);
+				res = (node.left) ? this._traverseLayerOrder(node.left, res, layer+1) : res;
+				res = (node.right) ? this._traverseLayerOrder(node.right, res, layer+1) : res;
+			}
+			return res;
+		}
+
+	}
+
+	if (noGlobal) return BST;
+
 	global.BST = BST;
-	
+
 });
