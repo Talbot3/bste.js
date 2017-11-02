@@ -6,9 +6,6 @@
   "scripts": {
     "test": "mocha"
   },
-  "dependencies": {
-    "mocha": "3.5.3"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/SchwSimon/BST.js"
