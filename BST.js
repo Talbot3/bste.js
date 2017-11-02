@@ -197,6 +197,64 @@
 			return res;
 		}
 
+		/**
+		 * Check if the given the binary search tree is valid or not
+		 * @param {Object} root The root node
+		 * @param {Object} propNames The node property names
+		 * @return {Boolean} True if valid else false
+		 * @throws if the propNames argument is not an object or has empty or not existing keys [value,left,right]
+		 */
+		static isBST(root, propNames = {value:'value',left:'left',right:'right'}) {
+			if (typeof root !== 'object') return false;
+			if (typeof propNames !== 'object'
+					|| !propNames.value
+						|| !propNames.left
+							|| !propNames.right)
+				throw 'propNames must be an object containing the keys: value,left,right with a String value';
+			const scanTree = (node, propNames) => {
+				if (node[propNames.left]) {
+					if (node[propNames.left][propNames.value] > node[propNames.value]) return false;
+					if (!scanTree(node[propNames.left], propNames)) return false;
+				}
+				if (node[propNames.right]) {
+					if (node[propNames.right][propNames.value] < node[propNames.value]) return false;
+					if (!scanTree(node[propNames.right], propNames)) return false;
+				}
+				return true;
+			}
+			return scanTree(root, propNames);
+		};
+
+		/**
+		 * Return a new instance of the BST class containing the nodes from the
+		 * given root node in the same order
+		 * NOTE: if the given tree is invalid the ouput tree will be valid
+		 * * therefor the order will change
+		 * @param {Object} root The root node
+		 * @param {Object} propNames The node property names
+		 * @return {Object} new instance of the class
+		 * @throws if the propNames argument is not an object or has empty or not existing keys [value,left,right]
+		 */
+		static create(root, propNames = {value:'value',left:'left',right:'right'}) {
+			if (typeof root !== 'object') return false;
+			if (typeof propNames !== 'object'
+					|| !propNames.value
+						|| !propNames.left
+							|| !propNames.right)
+				throw 'propNames must be an object containing the keys: value,left,right with a String value';
+			let nodeValues = (function preOrderValueExtract(node, propNames, nodeValues) {
+				if (node) {
+					nodeValues.push(node[propNames.value]);
+					nodeValues = preOrderValueExtract(node[propNames.left], propNames, nodeValues);
+					nodeValues = preOrderValueExtract(node[propNames.right], propNames, nodeValues);
+				}
+				return nodeValues
+			})(root, propNames, [])
+			let newBST = new BST;
+			newBST.push(...nodeValues);
+			return newBST;
+		};
+
 	}
 
 	if (noGlobal) return BST;
