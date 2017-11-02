@@ -1,15 +1,15 @@
-(function( global, factory ) {
+(function(global, factory) {
 
 	"use strict";
 
-	if ( typeof module === "object" && typeof module.exports === "object" ) {
+	if (typeof module === "object" && typeof module.exports === "object") {
 		// export as module for environments like NodeJS
-		module.exports = factory( null, true );
+		module.exports = factory(null, true);
 	} else {
-		factory( global, false );
+		factory(global, false);
 	}
 
-})( ( typeof window !== "undefined" ) ? window : this, function( global, noGlobal ) {
+})((typeof window !== "undefined") ? window : this, function(global, noGlobal) {
 
 	"use strict";
 
