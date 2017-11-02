@@ -147,4 +147,91 @@ describe('Class BST (Binary Search Tree)', function() {
 			});
 		});
 	});
+
+	describe('Static class functionality', function() {
+		describe('function isBST()', function() {
+			describe('arguments', function() {
+				it('must return false if root is not an object', function() {
+					test.value(_BST_.isBST()).is(false)
+				});
+				it('must throw an error if propNames is not an object', function() {
+					test.exception(() => {
+						_BST_.isBST({}, 1)
+					});
+				});
+				it('must throw an error if propNames.value is not defined or empty', function() {
+					test.exception(() => {
+						_BST_.isBST({}, {left:'',right:''})
+					});
+				});
+				it('must throw an error if propNames.left is not defined or empty', function() {
+					test.exception(() => {
+						_BST_.isBST({}, {value:'',right:''})
+					});
+				});
+				it('must throw an error if propNames.right is not defined or empty', function() {
+					test.exception(() => {
+						_BST_.isBST({}, {value:'',left:''})
+					});
+				});
+			});
+
+			describe('functionality', function() {
+				let newBST = new _BST_;
+				newBST.push(10,7,3,14,4,18,16,1,8,22,11);
+				let validBST = Object.assign({}, newBST.root);
+				it('must return true for a valid binary search tree', function() {
+					test.value(_BST_.isBST(validBST)).is(true)
+				});
+				it('must return false for a invalid binary search tree', function() {
+					let invalidBST = Object.assign({}, newBST.root);
+					invalidBST	// 10
+						.right		// 14
+							.right	// 18
+								.left.value = 20;	// 16 change this to an invalid value
+					test.value(_BST_.isBST(invalidBST)).is(false)
+				});
+			});
+		});
+
+		describe('function create()', function() {
+			describe('arguments', function() {
+				it('must return false if root is not an object', function() {
+					test.value(_BST_.create()).is(false)
+				});
+				it('must throw an error if propNames is not an object', function() {
+					test.exception(() => {
+						_BST_.create({}, 1)
+					});
+				});
+				it('must throw an error if propNames.value is not defined or empty', function() {
+					test.exception(() => {
+						_BST_.create({}, {left:'',right:''})
+					});
+				});
+				it('must throw an error if propNames.left is not defined or empty', function() {
+					test.exception(() => {
+						_BST_.create({}, {value:'',right:''})
+					});
+				});
+				it('must throw an error if propNames.right is not defined or empty', function() {
+					test.exception(() => {
+						_BST_.create({}, {value:'',left:''})
+					});
+				});
+			});
+
+			describe('functionality', function() {
+				let newBST = new _BST_;
+				newBST.push(10,7,3,14,4,18,16,1,8,22,11);
+				it('must return a new instance of the class', function() {
+					test.value(_BST_.create(newBST.root)).isInstanceOf(_BST_);
+				});
+				it('the new instance must have 11 nodes', function() {
+					let newBstInstance = _BST_.create(newBST.root);
+					test.value(newBstInstance.count).is(11);
+				});
+			});
+		});
+	});
 });
