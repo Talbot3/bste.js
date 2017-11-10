@@ -1,3 +1,5 @@
+![Travis build](https://travis-ci.org/SchwSimon/BST.js.svg?branch=master)
+
 # BST.js
 
 Class to create Binary Search Trees
