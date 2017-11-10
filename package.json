@@ -1,21 +1,21 @@
 {
-  "name": "LList",
+  "name": "bst",
   "version": "1.0.0",
-  "description": "Linked list Class",
-  "main": "./LList.js",
+  "description": "Binary Search Tree Class",
+  "main": "./BST.js",
   "scripts": {
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SchwSimon/LList.js"
+    "url": "https://github.com/SchwSimon/BST.js"
   },
   "keywords": [
-    "linked-list"
+    "binary-search-tree"
   ],
   "author": "Simon S.",
   "license": "ISC",
-  "devDependencies": {
+	"devDependencies": {
     "mocha": "^4.0.1",
     "unit.js": "^2.0.0"
   }
