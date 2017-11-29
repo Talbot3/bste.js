@@ -25,7 +25,7 @@ npm install binarysearchtree-js --save
 ### Usage
 
 ```js
-const BinarySearchTree = require('binary-search-tree');
+const BinarySearchTree = require('binarysearchtree-js');
 
   // traversal order type constants
 BinarySearchTree.IN_ORDER;
