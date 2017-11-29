@@ -1,4 +1,4 @@
-# BST.js
+# BinarySearchTree.js
 
 [![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/binary-search-tree)
 ![Travis build](https://travis-ci.org/SchwSimon/BST.js.svg?branch=master)

@@ -1,5 +1,5 @@
 {
-  "name": "binary-search-tree",
+  "name": "binary-search-tree-js",
   "version": "1.0.0",
   "description": "Javascript class to create & traverse Binary Search Trees",
   "main": "./dist/class-bst.dist.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SchwSimon/BinarySearchTree.js"
+    "url": "git+https://github.com/SchwSimon/BinarySearchTree.js.git"
   },
   "keywords": [
     "binary-search-tree"
@@ -28,5 +28,10 @@
     "uglifyjs-webpack-plugin": "^1.1.1",
     "unit.js": "^2.0.0",
     "webpack-stream": "^4.0.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/SchwSimon/BinarySearchTree.js/issues"
+  },
+  "homepage": "https://github.com/SchwSimon/BinarySearchTree.js#readme",
+  "dependencies": {}
 }
