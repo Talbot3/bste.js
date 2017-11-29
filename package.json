@@ -1,14 +1,15 @@
 {
-  "name": "bst",
+  "name": "binary-search-tree",
   "version": "1.0.0",
-  "description": "Binary Search Tree Class",
-  "main": "./BST.js",
+  "description": "Javascript class to create & traverse Binary Search Trees",
+  "main": "./dist/class-bst.dist.js",
   "scripts": {
-    "test": "mocha"
+    "build": "gulp build",
+    "test": "mocha __test__"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SchwSimon/BST.js"
+    "url": "https://github.com/SchwSimon/BinarySearchTree.js"
   },
   "keywords": [
     "binary-search-tree"
@@ -16,7 +17,16 @@
   "author": "Simon S.",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.2",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^4.0.0",
     "mocha": "^4.0.1",
-    "unit.js": "^2.0.0"
+    "pump": "^1.0.3",
+    "uglifyjs-webpack-plugin": "^1.1.1",
+    "unit.js": "^2.0.0",
+    "webpack-stream": "^4.0.0"
   }
 }
