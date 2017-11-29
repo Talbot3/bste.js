@@ -9,7 +9,7 @@ Class to create Binary Search Trees
 ## Installation
 
 ```sh
-npm install binary-search-tree --save
+npm install binarysearchtree-js --save
 ```
 
 ### Default node structure
