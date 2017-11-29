@@ -1,6 +1,6 @@
 # BinarySearchTree.js
 
-[![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/binary-search-tree)
+[![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/binarysearchtree-js)
 ![Travis build](https://travis-ci.org/SchwSimon/BST.js.svg?branch=master)
 [![License](https://img.shields.io/badge/license-ISC-blue.svg?style=flat)](https://opensource.org/licenses/ISC)
 
