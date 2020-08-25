@@ -9,7 +9,7 @@ Class to create Binary Search Trees
 ## Installation
 
 ```sh
-npm install binarysearchtree-js --save
+npm install git+https://github.com.cnpmjs.org/Talbot3/bste.js.git --save
 ```
 
 ### Default node structure

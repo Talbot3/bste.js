@@ -1,5 +1,5 @@
 {
-  "name": "binarysearchtree-js",
+  "name" : "bste.js",
   "version": "1.0.1",
   "description": "Javascript class to create & traverse Binary Search Trees",
   "main": "./dist/class-bst.dist.js",
