@@ -22,7 +22,7 @@ npm install git+https://github.com.cnpmjs.org/Talbot3/bste.js.git --save
 ### Usage
 
 ```js
-const BinarySearchTree = require('binarysearchtree-js');
+const BinarySearchTree = require('bste.js');
 
   // traversal order type constants
 BinarySearchTree.IN_ORDER;

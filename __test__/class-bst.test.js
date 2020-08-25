@@ -1,7 +1,7 @@
 "use strict";
 
 const test = require('unit.js');
-const _BST_ = require( "../src/class-bst.js" );
+const _BST_ = require( "../src/Bste.js" );
 
 describe('Class BST (Binary Search Tree)', function() {
 	const bst = new _BST_;
