@@ -46,6 +46,7 @@ class BinarySearchTree {
 			let _node;
 			if (Array.isArray(value)){
 				_node = this.createNode(...value);
+				value = value[0];
 			} else {
 				_node = this.createNode(value);
 			}

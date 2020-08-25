@@ -125,8 +125,8 @@ describe('Class BST (Binary Search Tree)', function() {
 			const bst = new _BST_;
 			bst.push(
 				[1, {path: "1.jpeg"}],
-				[2, { path: "2.jpeg" }],
-				[3, { path: "3.jpeg" }]
+				[3, { path: "3.jpeg" }],
+				[2, { path: "2.jpeg" }]
 			);
 
 			describe('traversal: in order (_traverseInOrderExtra())', function () {
