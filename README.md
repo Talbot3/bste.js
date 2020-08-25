@@ -40,7 +40,11 @@ bst.count;  // the node count
 bst.push(10);           // add a node with the value 10
 bst.push(2,21,32,44);   // add multiple nodes at once
 bst.push("1", [], null) // Non-numeric inputs are ignored
-
+bst.push(
+  [22, {path: "22Frame.jpeg"}],
+  [13, { path: "13Frame.jpeg" }],
+  [2, { path: "2Frame.jpeg" }]
+);
 bst.find(10);   // returns the node with the value 10
 bst.find(1);    // returns false if node does not exist
 
@@ -48,7 +52,7 @@ bst.min();      // returns the lowest value
 bst.min(true);  // returns the node with the lowest value
 bst.max();      // returns the highest value
 bst.max(true);  // returns the node with the highest value
-
+bst.traverseExtra(BinarySearchTree._IN_ORDER);    // Traverse the tree
 bst.traverse(BinarySearchTree._IN_ORDER);    // Traverse the tree
 bst.traverse(BinarySearchTree._PRE_ORDER);   // and return an Array
 bst.traverse(BinarySearchTree._POST_ORDER);  // with the node values
