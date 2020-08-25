@@ -40,6 +40,7 @@ describe('Class BST (Binary Search Tree)', function() {
 			it('must return a correct node object', function() {
 				test.value(bst.createNode(3)).is({
 					value: 3,
+					extra: {},
 					left: null,
 					right: null
 				});
@@ -88,14 +89,18 @@ describe('Class BST (Binary Search Tree)', function() {
 
 			const bst = new _BST_;
 			bst.push(10,7,14,3,18);
-
+			bst.push([22,{path: "/root/imgs/20200903090301001.jpg"}]);
 			it('must return the node with the lowest value', function() {
 				test.value(bst.min().value).is(3)
 			});
 
 			it('must return the node with the highest value', function() {
-				test.value(bst.max().value).is(18)
+				test.value(bst.max().value).is(22)
 			});
+
+			it('must return with node\'s extra with the highest value', function() {
+				test.value(bst.max().extra.path).is("/root/imgs/20200903090301001.jpg")
+			})
 		});
 
 		describe('function find()', function() {
@@ -253,4 +258,7 @@ describe('Class BST (Binary Search Tree)', function() {
 			});
 		});
 	});
+
+
 });
+

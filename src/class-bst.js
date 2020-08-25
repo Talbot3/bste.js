@@ -25,11 +25,12 @@ class BinarySearchTree {
 	 * @param {Number} value The node value
 	 * @return {Object|Null} node or null if value is not a number
 	 */
-	createNode(value) {
+	createNode(value, extra = {}) {
 		return (typeof value !== 'number')
 			? null
 				: {
 						value: value,
+						extra,
 						left: null,
 						right: null
 					}
@@ -42,7 +43,12 @@ class BinarySearchTree {
 	 */
 	push(...values) {
 		values.forEach(value => {
-			const _node = this.createNode(value);
+			let _node;
+			if (Array.isArray(value)){
+				_node = this.createNode(...value);
+			} else {
+				_node = this.createNode(value);
+			}
 
 			if (!_node)	// return if the node is invalid (not numeric)
 				return;
@@ -122,6 +128,19 @@ class BinarySearchTree {
 		return false;
 	}
 
+	traverseExtra(orderType, node = this.root) {
+		if (!node) {
+			return [];
+		}
+		switch(orderType) {
+			case BinarySearchTree.IN_ORDER: return this._traverseInOrderExtra(node);
+			case BinarySearchTree.PRE_ORDER: return this._traversePreOrderExtra(node);
+			case BinarySearchTree.POST_ORDER: return this._traversePostOrderExtra(node);
+			case BinarySearchTree.LAYER_ORDER: return this._traverseLayerOrderExtra(node);
+			default: throw "Invalid order type";
+		}
+	}
+
 	/**
 	 * Return an Array with the node values in the given traverse order
 	 * @param {String} BinarySearchTree order type constants
@@ -157,6 +176,20 @@ class BinarySearchTree {
 	}
 
 	/**
+	 * In Order traversal extra
+	 * @param {Object} node tree node
+	 * @return {Array} "in order" node values
+	 */
+	_traverseInOrderExtra(node, res = []) {
+		if (node) {
+			res = this._traverseInOrder(node.left, res);
+			res.push(node.extra);
+			res = this._traverseInOrder(node.right, res);
+		}
+		return res;
+	}
+
+	/**
 	 * Pre Order traversal
 	 * @param {Object} node tree node
 	 * @return {Array} "pre order" node values
@@ -164,6 +197,20 @@ class BinarySearchTree {
 	_traversePreOrder(node, res = []) {
 		if (node) {
 			res.push(node.value);
+			res = (node.left) ? this._traversePreOrder(node.left, res) : res;
+			res = (node.right) ? this._traversePreOrder(node.right, res) : res;
+		}
+		return res;
+	}
+
+	/**
+	 * Pre Order traversal extra
+	 * @param {Object} node tree node
+	 * @return {Array} "pre order" node values
+	 */
+	_traversePreOrderExtra(node, res = []) {
+		if (node) {
+			res.push(node.extra);
 			res = (node.left) ? this._traversePreOrder(node.left, res) : res;
 			res = (node.right) ? this._traversePreOrder(node.right, res) : res;
 		}
@@ -185,6 +232,20 @@ class BinarySearchTree {
 	}
 
 	/**
+	 * Post Order traversal extra
+	 * @param {Object} node tree node
+	 * @return {Array} "post order" node values
+	 */
+	_traversePostOrderExtra(node, res = []) {
+		if (node) {
+			res = (node.left) ? this._traversePostOrder(node.left, res) : res;
+			res = (node.right) ? this._traversePostOrder(node.right, res) : res;
+			res.push(node.value);
+		}
+		return res;
+	}
+
+	/**
 	 * Layer Order traversal
 	 * @param {Object} node tree node
 	 * @return {Array} An array containing the node values by layer (root layer = 0)
@@ -195,6 +256,21 @@ class BinarySearchTree {
 			res[layer].push(node.value);
 			res = (node.left) ? this._traverseLayerOrder(node.left, res, layer+1) : res;
 			res = (node.right) ? this._traverseLayerOrder(node.right, res, layer+1) : res;
+		}
+		return res;
+	}
+
+	/**
+	 * Layer Order traversal extra
+	 * @param {Object} node tree node
+	 * @return {Array} An array containing the node values by layer (root layer = 0)
+	 */
+	_traverseLayerOrderExtra(node, res = [], layer = 0) {
+		res[layer] = (!res[layer]) ? [] : res[layer];
+		if (node) {
+			res[layer].push(node.extra);
+			res = (node.left) ? this._traverseLayerOrderExtra(node.left, res, layer+1) : res;
+			res = (node.right) ? this._traverseLayerOrderExtra(node.right, res, layer+1) : res;
 		}
 		return res;
 	}
