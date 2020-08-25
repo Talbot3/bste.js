@@ -1,10 +1,6 @@
-# BinarySearchTree.js
+# bste.js
 
-[![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/binarysearchtree-js)
-![Travis build](https://travis-ci.org/SchwSimon/BinarySearchTree.js.svg?branch=master)
-[![License](https://img.shields.io/badge/license-ISC-blue.svg?style=flat)](https://opensource.org/licenses/ISC)
-
-Class to create Binary Search Trees
+Extend Binary Search Trees.
 
 ## Installation
 
@@ -16,6 +12,7 @@ npm install git+https://github.com.cnpmjs.org/Talbot3/bste.js.git --save
 
 ```js
 {
+  extra: {},
   value: 10,  // some numeric value
   left: null, // node object or null
   right: null // node object or null
@@ -79,3 +76,7 @@ BinarySearchTree.isBST(
   'rightNode' // right node property name
 )
 ```
+
+## Thanks
+
+- https://github.com/SchwSimon/BinarySearchTree.js
