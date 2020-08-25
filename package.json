@@ -1,37 +1,28 @@
 {
-  "name": "bste.js",
-  "version": "1.0.1",
+  "name" : "bste.js",
+  "version": "1.1.1",
   "description": "Javascript class to create & traverse Binary Search Trees",
-  "main": "./dist/class-bst.dist.js",
+  "main": "src/Bste.js",
   "scripts": {
     "build": "gulp build",
     "test": "mocha __test__"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SchwSimon/BinarySearchTree.js.git"
+    "url": "git+https://github.com/Talbot3/bste.js"
   },
   "keywords": [
-    "binary-search-tree"
+    "binary-search-tree", "extra"
   ],
-  "author": "Simon S.",
+  "author": "Talbot3",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.2",
-    "babel-loader": "^7.1.2",
-    "babel-preset-es2015": "^6.24.1",
-    "gulp": "^3.9.1",
-    "gulp-eslint": "^4.0.0",
     "mocha": "^4.0.1",
-    "pump": "^1.0.3",
-    "uglifyjs-webpack-plugin": "^1.1.1",
-    "unit.js": "^2.0.0",
-    "webpack-stream": "^4.0.0"
+    "unit.js": "^2.1.0"
   },
   "bugs": {
-    "url": "https://github.com/SchwSimon/BinarySearchTree.js/issues"
+    "url": "https://github.com/Talbot3/bste.js/issues"
   },
-  "homepage": "https://github.com/SchwSimon/BinarySearchTree.js#readme",
+  "homepage": "https://github.com/Talbot3/bste.js#readme",
   "dependencies": {}
 }
