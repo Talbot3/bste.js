@@ -182,9 +182,9 @@ class BinarySearchTree {
 	 */
 	_traverseInOrderExtra(node, res = []) {
 		if (node) {
-			res = this._traverseInOrder(node.left, res);
+			res = this._traverseInOrderExtra(node.left, res);
 			res.push(node.extra);
-			res = this._traverseInOrder(node.right, res);
+			res = this._traverseInOrderExtra(node.right, res);
 		}
 		return res;
 	}
@@ -211,8 +211,8 @@ class BinarySearchTree {
 	_traversePreOrderExtra(node, res = []) {
 		if (node) {
 			res.push(node.extra);
-			res = (node.left) ? this._traversePreOrder(node.left, res) : res;
-			res = (node.right) ? this._traversePreOrder(node.right, res) : res;
+			res = (node.left) ? this._traversePreOrderExtra(node.left, res) : res;
+			res = (node.right) ? this._traversePreOrderExtra(node.right, res) : res;
 		}
 		return res;
 	}
@@ -238,9 +238,9 @@ class BinarySearchTree {
 	 */
 	_traversePostOrderExtra(node, res = []) {
 		if (node) {
-			res = (node.left) ? this._traversePostOrder(node.left, res) : res;
-			res = (node.right) ? this._traversePostOrder(node.right, res) : res;
-			res.push(node.value);
+			res = (node.left) ? this._traversePostOrderExtra(node.left, res) : res;
+			res = (node.right) ? this._traversePostOrderExtra(node.right, res) : res;
+			res.push(node.extra);
 		}
 		return res;
 	}

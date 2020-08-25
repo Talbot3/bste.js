@@ -121,6 +121,24 @@ describe('Class BST (Binary Search Tree)', function() {
 			});
 		});
 
+		describe('Tree traversal with extra', function() {
+			const bst = new _BST_;
+			bst.push(
+				[1, {path: "1.jpeg"}],
+				[2, { path: "2.jpeg" }],
+				[3, { path: "3.jpeg" }]
+			);
+
+			describe('traversal: in order (_traverseInOrderExtra())', function () {
+				it('must return an array with the following order: [{ path: "1.jpeg" }, { path: "2.jpeg" }, { path: "3.jpeg" }, { path: "4.jpeg" }', function () {
+					const result = bst.traverseExtra(_BST_.IN_ORDER);
+					console.log(result);
+					test.value(result)
+						.is([{ "path": "1.jpeg" }, { "path": "2.jpeg" }, { "path": "3.jpeg" }])
+				});
+			});
+		});
+
 		describe('Tree traversal', function() {
 			const bst = new _BST_;
 			bst.push(10,7,3,14,4,18,16,1,8,22,11);
