@@ -1,6 +1,7 @@
 # bste.js
 
 Extend Binary Search Trees.
+[![Build Status](https://www.travis-ci.org/Talbot3/bste.js.svg?branch=master)](https://www.travis-ci.org/Talbot3/bste.js)
 
 ## Installation
 
