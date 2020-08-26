@@ -56,6 +56,12 @@ bst.traverse(BinarySearchTree._PRE_ORDER);   // and return an Array
 bst.traverse(BinarySearchTree._POST_ORDER);  // with the node values
 bst.traverse(BinarySearchTree._LAYER_ORDER); // in the given order
 
+let i = 0;
+bst.setTimerHandler(()=>{
+  i = 22;
+}, 2);
+bst.push(10, 7, 3, 14, 4, 18, 16, 1, 8, 22, 11);
+
   // Returns a new instance of BinarySearchTree
   // from any tree data with any given structure
   // by providing the root node and its node key names

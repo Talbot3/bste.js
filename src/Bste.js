@@ -5,6 +5,15 @@
  */
 class BinarySearchTree {
 	/**
+	 * 超时器
+	 */
+	#timer;
+	#timerHandler;
+	#preTime;
+	#curTime;
+	#latestDiffTime;
+	#delayTime;
+	/**
 	 * Traversal type constants
 	 */
 	static get IN_ORDER() { return 'IN_ORDER'; }
@@ -18,6 +27,32 @@ class BinarySearchTree {
 	constructor() {
 		this.root = null;
 		this.count = 0;
+	}
+
+	/**
+	 * 
+	 * @param {Function} fn 
+	 * @param {Number} delay 
+	 */
+	setTimerHandler(fn, delay=10000) {
+		this.#timerHandler = fn;
+		this.#delayTime = delay;
+	}
+
+	_calTime() {
+		if (!this.#curTime && !this.#preTime) {
+			this.#curTime = this.#preTime = (new Date()).getTime();
+		} else {
+			this.#preTime = this.#curTime;
+			this.#curTime = (new Date()).getTime();
+		}
+		this.#latestDiffTime = this.#curTime - this.#preTime;
+		if (this.#timer && this.#latestDiffTime < this.#delayTime) {
+			clearTimeout(this.#timer);
+		}
+		if (this.#timerHandler) {
+			this.#timer = setTimeout(this.#timerHandler, this.#delayTime);
+		}
 	}
 
 	/**
@@ -42,6 +77,7 @@ class BinarySearchTree {
 	 * @param {Number} value The node's value
 	 */
 	push(...values) {
+		this._calTime();
 		values.forEach(value => {
 			let _node;
 			if (Array.isArray(value)){
@@ -75,6 +111,7 @@ class BinarySearchTree {
 			}
 		});
 	}
+
 
 	/**
 	 * Return the node with the lowest value

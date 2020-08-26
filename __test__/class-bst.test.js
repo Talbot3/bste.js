@@ -274,6 +274,24 @@ describe('Class BST (Binary Search Tree)', function() {
 				});
 			});
 		});
+
+		describe('function setTimerHandler(fn, delay)', function() {
+			describe('functionality', function () {
+				const bst = new _BST_;
+				let i = 0;
+				bst.setTimerHandler(()=>{
+					i = 22;
+				}, 2);
+				bst.push(10, 7, 3, 14, 4, 18, 16, 1, 8, 22, 11);
+				it('the handler muse make i=0 to i=22', function (done) {
+					setTimeout(() => {
+						test.value(i).is(22);
+						done();
+					}, 3)
+				});
+			});
+		})
+
 	});
 
 
