@@ -4,7 +4,6 @@
   "description": "Javascript class to create & traverse Binary Search Trees",
   "main": "src/Bste.js",
   "scripts": {
-    "build": "gulp build",
     "test": "mocha __test__"
   },
   "repository": {

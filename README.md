@@ -6,7 +6,8 @@ Extend Binary Search Trees.
 ## Installation
 
 ```sh
-npm install git+https://github.com.cnpmjs.org/Talbot3/bste.js.git --save
+npm i bste.js
+# npm install git+https://github.com.cnpmjs.org/Talbot3/bste.js.git --save
 ```
 
 ### Default node structure
