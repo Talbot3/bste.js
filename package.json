@@ -1,6 +1,6 @@
 {
   "name" : "bste.js",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Javascript class to create & traverse Binary Search Trees",
   "main": "src/Bste.js",
   "scripts": {
