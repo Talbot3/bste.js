@@ -222,9 +222,9 @@ class BinarySearchTree {
 		// refers https://stackoverflow.com/questions/20936486/node-js-maximum-call-stack-size-exceeded
 		await this._sleep(1);
 		if (node) {
-			res = this._traverseInOrderExtra(node.left, res);
+			res = await this._traverseInOrderExtra(node.left, res);
 			res.push(node.extra);
-			res = this._traverseInOrderExtra(node.right, res);
+			res = await this._traverseInOrderExtra(node.right, res);
 		}
 		return res;
 	}
