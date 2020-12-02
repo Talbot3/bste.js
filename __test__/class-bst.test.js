@@ -131,9 +131,10 @@ describe('Class BST (Binary Search Tree)', function() {
 
 			describe('traversal: in order (_traverseInOrderExtra())', function () {
 				it('must return an array with the following order: [{ path: "1.jpeg" }, { path: "2.jpeg" }, { path: "3.jpeg" }, { path: "4.jpeg" }', function () {
-					const result = bst.traverseExtra(_BST_.IN_ORDER);
-					test.value(result)
-						.is([{ "path": "1.jpeg" }, { "path": "2.jpeg" }, { "path": "3.jpeg" }])
+					bst.traverseExtra(_BST_.IN_ORDER).then((result)=>{
+						test.value(result)
+							.is([{ "path": "1.jpeg" }, { "path": "2.jpeg" }, { "path": "3.jpeg" }])
+					});
 				});
 			});
 		});

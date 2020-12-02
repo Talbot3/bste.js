@@ -166,15 +166,15 @@ class BinarySearchTree {
 		return false;
 	}
 
-	traverseExtra(orderType, node = this.root) {
+	async traverseExtra(orderType, node = this.root) {
 		if (!node) {
 			return [];
 		}
 		switch(orderType) {
-			case BinarySearchTree.IN_ORDER: return this._traverseInOrderExtra(node);
-			case BinarySearchTree.PRE_ORDER: return this._traversePreOrderExtra(node);
-			case BinarySearchTree.POST_ORDER: return this._traversePostOrderExtra(node);
-			case BinarySearchTree.LAYER_ORDER: return this._traverseLayerOrderExtra(node);
+			case BinarySearchTree.IN_ORDER: return await this._traverseInOrderExtra(node);
+			case BinarySearchTree.PRE_ORDER: return await this._traversePreOrderExtra(node);
+			case BinarySearchTree.POST_ORDER: return await this._traversePostOrderExtra(node);
+			case BinarySearchTree.LAYER_ORDER: return await this._traverseLayerOrderExtra(node);
 			default: throw "Invalid order type";
 		}
 	}
@@ -218,7 +218,9 @@ class BinarySearchTree {
 	 * @param {Object} node tree node
 	 * @return {Array} "in order" node values
 	 */
-	_traverseInOrderExtra(node, res = []) {
+	async _traverseInOrderExtra(node, res = []) {
+		// refers https://stackoverflow.com/questions/20936486/node-js-maximum-call-stack-size-exceeded
+		await this._sleep(1);
 		if (node) {
 			res = this._traverseInOrderExtra(node.left, res);
 			res.push(node.extra);
@@ -313,6 +315,13 @@ class BinarySearchTree {
 		return res;
 	}
 
+	_sleep(seconds) {
+		return new Promise((resolve, _)=>{
+			setTimeout(()=>{
+				resolve();
+			}, seconds);
+		})
+	}
 	/**
 	 * Check if the given the binary search tree is valid or not
 	 * @param {Object} root The root node
